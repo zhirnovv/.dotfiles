@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/zhirnovv/solvery/mentoring-api/src/modules/study-request/routes'
+let g:netrw_dirhist_9='/home/zhirnovv/solvery/react-client/src/components/templates/defaultLocaleFallback'
+let g:netrw_dirhist_8='/home/zhirnovv/solvery/react-client/src/components/templates'
+let g:netrw_dirhist_7='/home/zhirnovv/solvery/react-client/src/components/templates/page'
+let g:netrw_dirhist_6='/home/zhirnovv/solvery/react-client/src/components/templates'
+let g:netrw_dirhist_5='/home/zhirnovv/solvery/react-client/src/components'
+let g:netrw_dirhist_4='/home/zhirnovv/solvery/react-client/src/components/templates'
+let g:netrw_dirhist_3='/home/zhirnovv/gusilebedi/stworki/src/hooks'
+let g:netrw_dirhist_2='/home/zhirnovv/gusilebedi/stworki/components/templates/Checkout/steps'
+let g:netrw_dirhist_1='/home/zhirnovv/gusilebedi/stworki/components/organisms/PropertiesTable'
