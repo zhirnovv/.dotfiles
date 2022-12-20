@@ -1,0 +1,17 @@
+$c-primary: #282c34;
+$c-secondary: #abb2bf;
+
+window {
+  font-family: "Iosevka Aile";
+  font-weight: 600;
+}
+
+calendar.example {
+  background-color: $c-primary;
+  color: $c-secondary;
+
+  &:selected {
+    background-color: $c-secondary;
+    color: $c-primary;
+  }
+}

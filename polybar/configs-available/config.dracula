@@ -1,0 +1,284 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = #282A36
+background-alt = #282A36
+foreground = #F8F8F2
+foreground-alt = #6282A4
+primary = #BD93f9
+secondary = #FF79C6
+red = #FF5555
+orange = #FFB86C
+green = #50FA7B
+transparent = #00000000
+
+[spacings]
+normal = 1
+
+[fonts]
+font-0 = Noto Sans:pixelsize=16;1
+font-1 = Noto Sans:fontformat=truetype:size=8:antialias=false;0
+font-2 = Noto Sans:pixelsize=10;1
+
+[bar/example]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 30
+radius = 0.0
+fixed-center = false
+override-redirect = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = ${colors.foreground}
+
+;border-size = 3
+;border-color = ${colors.transparent}
+
+module-margin = 1
+
+font-0 = ${fonts.font-0}
+font-1 = ${fonts.font-1}
+font-2 = ${fonts.font-2}
+
+modules-left = dwm
+modules-right = backlight pulseaudio wlan eth ethdock battery date xkeyboard
+
+tray-position = right
+tray-padding = 2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/dwm]
+type = internal/dwm
+format = <label-floating><label-layout>  <label-tags> <label-title>
+; Path to dwm socket (default: /tmp/dwm.sock)
+; socket-path = /tmp/dwm.sock
+
+; Left-click to view tag, right-click to toggle tag view
+enable-tags-click = true
+
+; Title of currently focused window
+; Available tokens:
+;   %title%
+label-title = %title%
+label-title-padding = 2
+label-title-forefround = ${colors.primary}
+label-title-maxlen = 60
+
+; Symbol of current layout
+; Available tokens:
+;   %symbol%
+label-layout = %symbol%
+label-layout-padding = 2
+label-layout-foreground = #000
+label-layout-underline = ${colors.primary}
+label-layout-background = ${colors.primary}
+
+; Text to show when currently focused window is floating
+label-floating = F
+label-floating-padding = 2
+label-floating-foreground = ${colors.background}
+label-floating-background = ${colors.green}
+label-floating-underline = ${colors.green}
+
+; States: focused, unfocused, visible, urgent, empty
+; Available tokens:
+;   %name%
+
+; focused = Selected tag on focused monitor
+label-focused = %name%
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.primary}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Unselected tag on unselected monitor
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-background = ${colors.background}
+label-unfocused-underline = ${colors.background}
+label-unfocused-padding = 2
+
+; visible = Unselected tag, but occupied tag on any monitor
+label-visible = %name%
+label-visible-foreground = ${colors.foreground}
+label-visible-background = ${colors.background}
+label-visible-underline = ${colors.primary}
+label-visible-padding = 2
+
+; urgent = Unselected tag with window that has urgency hint set
+label-urgent = %name%
+label-urgent-background = ${colors.red}
+label-urgent-underline = ${colors.red}
+label-urgent-padding = 2
+
+; empty = Unselected and unoccupied tag
+; This can be set to an empty string to hide empty tags
+; label-empty = %name%
+label-empty = ""
+label-empty-background = ${colors.primary}
+label-empty-padding = 2
+
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-padding = 2
+format-prefix-foreground = ${colors.foreground}
+
+label-layout = %name%
+label-layout-backgroung = ${colors.background}
+; label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 2
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+enable-scroll = true
+; output = eDP-1
+
+format = <label>
+format-background = ${colors.background}
+format-underline = ${colors.foreground}
+format-padding = ${spacings.normal}
+
+label = BL %percentage%%
+
+[module/wlan]
+type = internal/network
+interface = wlp0s20f3
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-background = ${colors.background}
+format-connected-padding = ${spacings.normal}
+format-connected-radius = 10.0
+label-connected = %essid%
+
+format-disconnected = 
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = enp0s31f6
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/ethdock]
+type = internal/network
+interface = ethdock
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = ""
+date-alt = "%d/%m/%Y"
+
+format-padding = 1
+format-underline = ${colors.foreground}
+
+time = "%H:%M"
+time-TZ = "Europe/Moscow"
+time-alt = "%H:%M:%S"
+
+label = %date% %time%
+
+[module/pulseaudio]
+
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+label-volume-underline = ${colors.foreground}
+label-volume-padding = ${spacings.normal}
+
+label-muted = "VOL MUTE"
+label-muted-foreground = #666
+label-muted-underline = #666
+
+[module/alsa]
+
+type = internal/alsa
+
+master-soundcard = hw:0
+headphone-soundcard = hw:0
+
+format-volume = <label-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = VOL MUTE
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+label-charging = %percentage_raw%%
+label-discharging = %percentage_raw%%
+
+format-charging = <label-charging>
+format-charging-underline = ${colors.orange}
+
+format-discharging = <label-discharging>
+format-discharging-underline = ${colors.red}
+
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${colors.green}
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

@@ -1,0 +1,15 @@
+(defwindow example
+           :monitor 0
+           :geometry (geometry :x "20px"
+                               :y "88px"
+                               :width "512px"
+                               :anchor "top left")
+           :stacking "bg"
+           :windowtype "normal"
+           :wm-ignore false
+  (calendar
+           :show-details false
+           :show-heading true
+  )
+)
+

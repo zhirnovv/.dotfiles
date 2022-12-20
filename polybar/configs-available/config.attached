@@ -1,0 +1,236 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = #282C34
+background-alt = #282C34
+foreground = #ABB2BF
+foreground-alt = #6282A4
+primary = #C678DD
+secondary = #56B6C2
+red = #E06C75
+orange = #E5C07B
+green = #98C379
+transparent = #00000000
+
+[spacings]
+normal = 1
+
+[fonts]
+font-0 = Iosevka Aile Semibold:pixelsize=16;4
+font-1 = Ionicons:pixelsize=28;6
+font-2 = Ionicons:pixelsize=22;5
+font-3 = Ionicons:pixelsize=16;6
+font-4 = Material Icons:pixelsize=20;5
+
+[bar/main]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 48
+radius = 0
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-size = 0
+border-bottom-size = 0
+border-color = ${colors.background}
+padding-right = 0
+separator = |
+
+modules-left = dwm
+modules-center = date
+modules-right = wlan eth bluetooth pulseaudio backlight battery xkeyboard
+module-margin = 2
+
+line-color = ${colors.foreground}
+
+font-0 = ${fonts.font-0}
+font-1 = ${fonts.font-1}
+font-2 = ${fonts.font-2}
+
+[module/dwm]
+type = internal/dwm
+format = <label-floating><label-layout><label-tags> <label-title>
+; Path to dwm socket (default: /tmp/dwm.sock)
+; socket-path = /tmp/dwm.sock
+
+; Left-click to view tag, right-click to toggle tag view
+enable-tags-click = true
+
+; Title of currently focused window
+; Available tokens:
+;   %title%
+label-title = %title%
+label-title-padding = 2
+label-title-foreground = ${colors.foreground}
+label-title-maxlen = 60
+
+; Symbol of current layout
+; Available tokens:
+;   %symbol%
+label-layout = %symbol%
+label-layout-padding = 1
+label-layout-foreground = ${colors.foreground}
+label-layout-background = ${colors.background}
+
+; Text to show when currently focused window is floating
+label-floating = F
+label-floating-padding = 2
+label-floating-foreground = ${colors.background}
+label-floating-background = ${colors.primary}
+
+; States: focused, unfocused, visible, urgent, empty
+; Available tokens:
+;   %name%
+
+; focused = Selected tag on focused monitor
+label-focused = %name%
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.foreground}
+label-focused-padding = 2
+
+; unfocused = Unselected tag on unselected monitor
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-background = ${colors.background}
+label-unfocused-padding = 2
+
+; visible = Unselected tag, but occupied tag on any monitor
+label-visible = %name%
+label-visible-foreground = ${colors.foreground}
+label-visible-background = ${colors.background}
+label-visible-padding = 1
+
+; urgent = Unselected tag with window that has urgency hint set
+label-urgent = %name%
+label-urgent-background = ${colors.red}
+label-urgent-padding = 1
+
+; empty = Unselected and unoccupied tag
+; This can be set to an empty string to hide empty tags
+; label-empty = %name%
+label-empty = ""
+label-empty-background = ${colors.primary}
+label-empty-padding = 1
+
+[module/xkeyboard]
+
+type = internal/xkeyboard
+
+format-spacing = 1
+label-layout = %name%
+label-indicator-foreground = ${colors.primary}
+label-layout-background = ${colors.background}
+label-indicator-on = (%name%)
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+enable-scroll = true
+
+format = <label>
+format-background = ${colors.background}
+label = %{T3} %{T-}%percentage%%
+
+[module/wlan]
+type = internal/network
+interface = wlan
+interval = 3.0
+
+format-connected = <label-connected>
+label-connected = 
+label-connected-font = 3
+label-connected-foreground = ${colors.green}
+
+format-disconnected = <label-disconnected>
+label-disconnected = 
+label-disconnected-font = 3
+label-disconnected-foreground = ${colors.red}
+
+[module/eth]
+
+type = internal/network
+interface = ethdock
+interval = 3.0
+
+format-connected = <label-connected>
+label-connected = 
+label-connected-font = 3
+label-connected-foreground = ${colors.green}
+
+format-disconnected = <label-disconnected>
+label-disconnected = 
+label-disconnected-foreground = ${colors.red}
+
+[module/bluetooth]
+
+type = custom/script
+exec = /usr/local/bin/polybar_bluetooth
+interval = 2
+
+[module/date]
+
+type = internal/date
+interval = 1
+
+date = "%d.%m.%Y"
+date-alt = "%d.%m.%Y"
+
+time = "%H:%M"
+time-TZ = "Europe/Moscow"
+time-alt = "%H:%M:%S"
+
+label = %date% %time%
+
+[module/pulseaudio]
+
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+ramp-volume-0 = %{T2}%{T-}
+ramp-volume-1 = %{T2}%{T-}
+ramp-volume-2 = %{T2}%{T-}
+label-volume = %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = %{T2}%{T-} %percentage%%
+label-muted-foreground = #666
+
+[module/battery]
+
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 95
+poll-interval = 60
+
+format-charging = <label-charging>
+format-charging-foreground = ${colors.orange}
+label-charging = %{T4}%{T-} %percentage_raw%%
+
+format-discharging = <label-discharging>
+format-discharging-foreground = ${colors.foreground}
+label-discharging = %{T4}%{T-} %percentage_raw%%
+
+format-full = <label-full>
+format-full-foreground = ${colors.green}
+label-full = %{T4}%{T-} %percentage_raw%%
+
+format-low = <label-low>
+format-low-foreground = ${colors.red}
+label-low = %{T4}%{T-} %percentage_raw%%
+
