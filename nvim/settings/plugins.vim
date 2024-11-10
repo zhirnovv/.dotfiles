@@ -1,18 +1,20 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'joshdick/onedark.vim'
+Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
 
 call plug#end()
 
@@ -22,7 +24,7 @@ let g:coc_filetype_map = { 'ejs': 'ejs' }
 command! -nargs=0 Format :call CocAction('format')
 
 " fzf.vim
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --no-require-git'
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden -g !.git/'
 let $FZF_DEFAULT_OPTS='--layout=reverse'
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -44,12 +46,3 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-autocmd! FileType fzf
-autocmd  FileType fzf set noshowmode noruler nonu
-
-let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
-let g:nnn#set_default_mappings = 0
-let g:nnn#action = {
-      \ '<c-t>': 'tab split',
-      \ '<c-s>': 'split',
-      \ '<c-v>': 'vsplit' }
