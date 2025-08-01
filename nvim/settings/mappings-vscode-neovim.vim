@@ -64,6 +64,7 @@ nmap <silent> go <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
 nmap <silent> gO <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
 nmap <silent> gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
 nmap <silent> gi <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
+nmap <silent> g. <Cmd>call VSCodeNotify('editor.action.codeAction')<CR>
 
 " debug layer (leader-based "d")
 nmap <silent> <Leader>dd <Cmd>call VSCodeNotify('workbench.action.debug.start')<CR>

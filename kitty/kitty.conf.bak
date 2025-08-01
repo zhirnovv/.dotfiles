@@ -1,13 +1,11 @@
-# include ./shortcuts.conf
-# include ./fonts.conf
-
+include ./kitty-themes/themes/github_dark.conf
+include ./fonts.conf
 include ./shortcuts.conf
 include ./layout.conf
-
-macos_titlebar_color background
-
+# macos_titlebar_color background
 editor /opt/homebrew/bin/nvim
 confirm_os_window_close 0
+
 
 # BEGIN_KITTY_FONTS
 font_family      family="Monaspace Neon Var"
@@ -15,3 +13,8 @@ bold_font        family='Monaspace Neon Var' style=Bold variable_name=MonaspaceN
 italic_font      auto
 bold_italic_font family='Monaspace Neon Var' variable_name=MonaspaceNeonVar wght=700 wdth=100 slnt=-11
 # END_KITTY_FONTS
+
+# BEGIN_KITTY_THEME
+# Github
+include current-theme.conf
+# END_KITTY_THEME

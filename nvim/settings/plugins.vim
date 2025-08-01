@@ -11,8 +11,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
-" Plug 'itchyny/lightline.vim'
-Plug 'nvim-lualine/lualine.nvim'
+Plug 'itchyny/lightline.vim'
+" Plug 'nvim-lualine/lualine.nvim'
 Plug 'joshdick/onedark.vim'
 Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
 
